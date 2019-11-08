@@ -2347,7 +2347,8 @@ nacl.setPRNG = function(fn) {
 (function() {
   // Initialize PRNG if environment provides CSPRNG.
   // If not, methods calling randombytes will throw.
-  var crypto = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
+  var crypto = require('./randomProvider')
+  // var crypto = typeof self !== 'undefined' ? (self.crypto || self.msCrypto) : null;
   if (crypto && crypto.getRandomValues) {
     // Browsers.
     var QUOTA = 65536;
@@ -2361,7 +2362,7 @@ nacl.setPRNG = function(fn) {
     });
   } else if (typeof require !== 'undefined') {
     // Node.js.
-    crypto = require('crypto');
+    // crypto = require('crypto');
     if (crypto && crypto.randomBytes) {
       nacl.setPRNG(function(x, n) {
         var i, v = crypto.randomBytes(n);
