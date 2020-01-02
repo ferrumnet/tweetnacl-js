@@ -1,7 +1,7 @@
 const crypto = require('../randomProvider.js')
 var test = require('tape');
 
-test('random is not rediculus', function(t) {
+test('random is not ridiculous', function(t) {
     const buf1 = Buffer.alloc(20);
     const buf2 = Buffer.alloc(20);
     crypto.getRandomValues(buf1)
